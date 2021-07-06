@@ -1,10 +1,22 @@
 import React from "react"
 import { Link } from "gatsby"
-import { resume } from "../../static/lewis-resume.pdf"
+import { useStaticQuery, graphql } from "gatsby"
 
 const Layout = props => {
   const { title, children } = props
   const [toggleNav, setToggleNav] = React.useState(false)
+  const data = useStaticQuery(graphql`
+    {
+      allFile(filter: { extension: { eq: "pdf" } }) {
+        edges {
+          node {
+            publicURL
+            name
+          }
+        }
+      }
+    }
+  `)
   return (
     <div className={`site-wrapper ${toggleNav ? `site-head-open` : ``}`}>
       <header className="site-head">
@@ -30,9 +42,6 @@ const Layout = props => {
               <li className="nav-home nav-current" role="menuitem">
                 <Link to={`/`}>Home</Link>
               </li>
-              <li className="nav-about" role="menuitem">
-                <Link to={`/about`}>About</Link>
-              </li>
             </ul>
           </nav>
           <div className="site-head-center">
@@ -50,7 +59,20 @@ const Layout = props => {
               >
                 Instagram
               </a>
+
             </div>
+            <div className="nav-about" role="menuitem">
+
+                {data.allFile.edges.map((file, index) => {
+                  return (
+                    <li key={`pdf-${index}`}>
+                      <a href={file.node.publicURL} download>
+                        Resume
+                      </a>
+                    </li>
+                  )
+                })}
+              </div>
           </div>
         </div>
       </header>
