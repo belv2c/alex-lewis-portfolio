@@ -59,20 +59,16 @@ const Layout = props => {
               >
                 Instagram
               </a>
-
-            </div>
-            <div className="nav-about" role="menuitem">
-
-                {data.allFile.edges.map((file, index) => {
+              {data.allFile.edges.map((file, index) => {
                   return (
-                    <li key={`pdf-${index}`}>
+                   
                       <a href={file.node.publicURL} download>
                         Resume
                       </a>
-                    </li>
+                
                   )
                 })}
-              </div>
+            </div>
           </div>
         </div>
       </header>
