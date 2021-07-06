@@ -393,6 +393,7 @@ body {
     display: flex;
     align-items: ;
     flex-wrap: wrap;
+    margin-top: 100px;
 }
 
 .post-card {

@@ -13,7 +13,7 @@ const AboutPage = ({ data }, location) => {
 
   return (
     <Layout title={siteTitle}>
-      <SEO title="ABout" keywords={[`blog`, `gatsby`, `javascript`, `react`]} />
+      {/* <SEO title="ABout" keywords={[`blog`, `gatsby`, `javascript`, `react`]} />
 
       <article className="post-content page-template no-image">
         <div className="post-content-body">
@@ -50,7 +50,7 @@ const AboutPage = ({ data }, location) => {
             for more ways to integrate Ghost with your favourite services.
           </p>
         </div>
-      </article>
+      </article> */}
     </Layout>
   )
 }
