@@ -20,6 +20,27 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-remark-videos`,
+      options: {
+        pipelines: [
+          {
+            name: "h264",
+            transcode: chain =>
+              chain
+                .videoCodec("libx264")
+                .noAudio()
+                .addOption("-profile:v", "main")
+                .addOption("-pix_fmt", "yuv420p")
+                .outputOptions(["-movflags faststart"])
+                .videoBitrate("1000k"),
+            maxHeight: 480,
+            maxWidth: 900,
+            fileExtension: "mp4",
+          },
+        ],
+      },
+    },
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
@@ -27,7 +48,7 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 1360,
-              withWebp: true,
+              withWebp: false,
               showCaptions: true,
               quality: 75,
               wrapperStyle: `margin: 7vw 0;`,
@@ -86,7 +107,7 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `content/blog/egghead/lucerna.png`,
-    },
+      },
     },
     `gatsby-plugin-netlify`,
     `gatsby-plugin-offline`,
