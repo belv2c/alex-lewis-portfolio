@@ -1,7 +1,10 @@
-import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-
+import React from "react"
+import MazziVideo from "../../content/blog/animation/ion-mazzi-animation.mp4"
+import MirrorVideo from "../../content/blog/animation/look-in-the-mirror-intro-demo.mp4"
+import RealityMakersVideo from "../../content/blog/animation/reality-makers-poster-animation.mp4"
+import TypographyVideo from "../../content/blog/animation/typography-poster-4.mp4"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
@@ -12,9 +15,7 @@ class BlogPostTemplate extends React.Component {
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO
-          title={post.frontmatter.title}
-        />
+        <SEO title={post.frontmatter.title} />
         <article
           className={`post-content ${post.frontmatter.thumbnail || `no-image`}`}
         >
@@ -26,13 +27,31 @@ class BlogPostTemplate extends React.Component {
             <p class="post-content-excerpt">{post.frontmatter.description}</p>
           )}
 
-          {post.frontmatter.thumbnail && (
-            <div className="post-content-image">
-              <Img
-                className="kg-image"
-                fluid={post.frontmatter.thumbnail.childImageSharp.fluid}
-                alt={post.frontmatter.title}
-              />
+          {post.frontmatter.thumbnail &&
+            post.frontmatter.title !== "Animation" && (
+              <div className="post-content-image">
+                <Img
+                  className="kg-image"
+                  fluid={post.frontmatter.thumbnail.childImageSharp.fluid}
+                  alt={post.frontmatter.title}
+                />
+              </div>
+            )}
+
+          {post.frontmatter.title === "Animation" && (
+            <div>
+              <video controls style={{ width: `100%`, marginBottom: `40px` }}>
+                <source src={TypographyVideo} type="video/mp4" />
+              </video>
+              <video controls style={{ width: `100%`, marginBottom: `40px` }}>
+                <source src={RealityMakersVideo} type="video/mp4" />
+              </video>
+              <video controls style={{ width: `100%`, marginBottom: `40px` }}>
+                <source src={MirrorVideo} type="video/mp4" />
+              </video>
+              <video controls style={{ width: `100%`, marginBottom: `40px` }}>
+                <source src={MazziVideo} type="video/mp4" />
+              </video>
             </div>
           )}
 

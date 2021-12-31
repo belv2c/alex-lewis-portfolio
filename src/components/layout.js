@@ -1,6 +1,5 @@
+import { graphql, Link, useStaticQuery } from "gatsby"
 import React from "react"
-import { Link } from "gatsby"
-import { useStaticQuery, graphql } from "gatsby"
 
 const Layout = props => {
   const { title, children } = props
@@ -60,14 +59,12 @@ const Layout = props => {
                 Instagram
               </a>
               {data.allFile.edges.map((file, index) => {
-                  return (
-                   
-                      <a href={file.node.publicURL} download>
-                        Resume
-                      </a>
-                
-                  )
-                })}
+                return (
+                  <a key={index} href={file.node.publicURL} download>
+                    Resume
+                  </a>
+                )
+              })}
             </div>
           </div>
         </div>
